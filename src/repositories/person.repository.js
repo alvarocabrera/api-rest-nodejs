@@ -12,6 +12,10 @@ module.exports = class PersonRepository {
     return await PersonModel.findOne(filter)
   }
 
+  async find(filter) {
+    return await PersonModel.find(filter)
+  }
+
   /**
    *
    * @param {object} person: contiene las propiedades del documento que se desea guardar,

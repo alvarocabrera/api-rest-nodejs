@@ -26,6 +26,21 @@ module.exports = class PersonController {
     }
   }
 
+  async getByFilters(ctx) {
+    const eyeColor = ctx.params.eyeColor
+    const country = ctx.params.country
+    const gender = ctx.params.gender
+
+    const filter = { eyeColor: eyeColor, country: country, gender: gender }
+
+    const data = await repository.find(filter)
+    if (data) {
+      ctx.body = data
+    } else {
+      ctx.throw(404, `No se ha encontrado a la(s) persona(s)`)
+    }
+  }
+
   /**
    *
    * @param {object} ctx: contexto de koa que contiene los parameteros de la solicitud, en este caso desde el body,
